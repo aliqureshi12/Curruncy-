@@ -45,7 +45,7 @@ function App() {
               onClick={swapCurrencies}
               className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-3 py-1 rounded-md"
             >
-              SwapAli
+              SwapAliQ
             </button>
           </div>
 
