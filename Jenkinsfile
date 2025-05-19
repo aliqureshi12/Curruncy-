@@ -15,6 +15,13 @@ pipeline {
                 '''
             }
         }
+        stage('Rebuild App') {
+          steps {
+            sh 'docker-compose down'
+            sh 'docker-compose build'
+            sh 'docker-compose up -d'
+          }
+        }
 
         stage('Fetch code') {
             steps {
