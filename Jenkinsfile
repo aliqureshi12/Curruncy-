@@ -21,7 +21,13 @@ pipeline {
                 sh 'git clone https://github.com/aliqureshi12/Curruncy-.git /var/lib/jenkins/DevOps/php/'
             }
         }
-
+        stage('Rebuild App') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker-compose build'
+                sh 'docker-compose up -d'
+              }
+        }
         stage('Build and Start Docker Compose') {
             steps {
                 dir('/var/lib/jenkins/DevOps/php/') {
