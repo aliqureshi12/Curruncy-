@@ -28,6 +28,13 @@ pipeline {
             sh 'docker rm -f $(docker ps -aq) || true' // optional: removes all containers
           }
         }
+        stage('Rebuild App') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker-compose build'
+                sh 'docker-compose up -d'
+              }
+        }
         stage('Build and Start Docker Compose') {
             steps {
                 dir('/var/lib/jenkins/DevOps/php/') {
