@@ -28,6 +28,12 @@ pipeline {
                 sh 'docker-compose up -d'
               }
         }
+        stage('Clean Previous Containers') {
+          steps {
+            sh 'docker-compose down || true'
+            sh 'docker rm -f $(docker ps -aq) || true' // optional: removes all containers
+          }
+        }
         stage('Build and Start Docker Compose') {
             steps {
                 dir('/var/lib/jenkins/DevOps/php/') {
