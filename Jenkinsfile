@@ -21,28 +21,7 @@ pipeline {
                 sh 'git clone https://github.com/aliqureshi12/Curruncy-.git /var/lib/jenkins/DevOps/php/'
             }
         }
-        
-        stage('Clean Previous Containers') {
-            steps {
-                sh '''
-                    docker-compose down || true
-                    containers=$(docker ps -q --filter "expose=3001" --filter "publish=3001")
-                    if [ ! -z "$containers" ]; then
-                        docker rm -f $containers || true
-                    fi
-                    docker container prune -f || true
-                    docker network prune -f || true
-                '''
-            }
-        }
 
-        stage('Rebuild App') {
-            steps {
-                sh 'docker-compose down'
-                sh 'docker-compose build'
-                sh 'docker-compose up -d'
-              }
-        }
         stage('Build and Start Docker Compose') {
             steps {
                 dir('/var/lib/jenkins/DevOps/php/') {
