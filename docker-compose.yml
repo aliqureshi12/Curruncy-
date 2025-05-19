@@ -4,7 +4,7 @@ services:
   frontend:
     build: .
     ports:
-      - "3001:80"
+      - "3005:80"
     depends_on:
       - db
 
